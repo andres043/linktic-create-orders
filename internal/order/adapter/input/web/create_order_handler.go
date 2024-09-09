@@ -21,10 +21,10 @@ func NewCreateOrderHandler(createOrderUseCase usecase.CreateOrder) *CreateOrderH
 // @Summary Create an order
 // @Description Create an order
 // @Tags orders
-// @Accept json
-// @Produce json
-// @Param order body Order true "Order"
-// @Success 200 {object} Order
+// @Accept  json
+// @Produce  json
+// @Param order body dto.Order true "Order"
+// @Success 200 {object} dto.Order
 // @Router /orders [post]
 func (c *CreateOrderHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()

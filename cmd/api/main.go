@@ -12,7 +12,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = http.ListenAndServe(":8080", app.Router)
+	err = http.ListenAndServe(":8081", app.Router)
 	if err != nil {
 		log.Fatal(err)
 	}

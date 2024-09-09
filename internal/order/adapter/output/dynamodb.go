@@ -5,8 +5,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
-	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/google/uuid"
+	"linktic-create-orders/internal/order/adapter/output/dto"
 	"linktic-create-orders/internal/order/model"
 )
 
@@ -24,9 +24,10 @@ func NewDynamoDb() *DynamoDB {
 }
 
 func (c *DynamoDB) CreateOrder(ctx context.Context, order model.Order) error {
-	item, err := attributevalue.MarshalMap(order)
-	orderID := uuid.New().String()
-	item["order_id"] = &types.AttributeValueMemberS{Value: orderID}
+	orderDto := dto.ToDto(order)
+	orderDto.OrderID = uuid.New().String()
+
+	item, err := attributevalue.MarshalMap(orderDto)
 	if err != nil {
 		panic(err)
 	}
