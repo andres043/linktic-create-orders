@@ -1,0 +1,38 @@
+definitions:
+  dto.Order:
+    properties:
+      order_id:
+        type: string
+      price:
+        type: number
+      product:
+        type: string
+      quantity:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /orders:
+    post:
+      consumes:
+      - application/json
+      description: Create an order
+      parameters:
+      - description: Order
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Order'
+      summary: Create an order
+      tags:
+      - orders
+swagger: "2.0"

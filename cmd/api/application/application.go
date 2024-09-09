@@ -15,7 +15,7 @@ func NewApplication(createOrder *web.CreateOrderHandler) *Application {
 		Router: mux.NewRouter(),
 	}
 
-	app.Router.HandleFunc("/orders", createOrder.Handle).Methods("POST")
+	app.Router.HandleFunc("/v1/orders", createOrder.Handle).Methods("POST")
 
 	return app
 }
